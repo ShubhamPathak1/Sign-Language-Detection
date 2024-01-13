@@ -2,7 +2,7 @@ import os
 
 main_dir = "Data"
 
-actions = os.listdir("Data")[:3]
+actions = os.listdir("Data")
 
 if not os.path.exists(main_dir):
     os.makedirs(main_dir)
@@ -13,5 +13,5 @@ for action in actions:
         os.makedirs(action_dir)
     for i in range(30, 60):
         sub_dir = os.path.join(action_dir, str(i))
-        if os.path.exists(sub_dir):
-            os.removedirs(sub_dir)
+        if not os.path.exists(sub_dir):
+            os.makedirs(sub_dir)
