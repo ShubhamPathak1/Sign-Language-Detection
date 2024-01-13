@@ -4,7 +4,7 @@ cap = cv2.VideoCapture(0)
 
 with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
     for action in actions:
-        for seq in range(no_sequences):
+        for seq in range(30):
             for frame_num in range(sequence_length):
                 ret, frame = cap.read()
                 image, results = mediapipe_detection(frame, holistic)

@@ -80,7 +80,7 @@ def prob_viz(res, actions, input_frame, colors):
 
 DATA_PATH = os.path.join("Data")
 
-# actions = np.array(['Deaf'], ['Fine'], ['Food'], ['Hello'], [''])
+# actions = np.array(['No Sign Detected'])
 actions = np.array(os.listdir("Data"))
 
 no_sequences = 30

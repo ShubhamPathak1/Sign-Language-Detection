@@ -16,7 +16,7 @@ X = np.array(sequences)
 y = to_categorical(labels).astype(int)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05)
 
-log_dir = os.path.join('Logs')
+log_dir = os.path.join('Log')
 tb_callback = TensorBoard(log_dir=log_dir)
 model = Sequential()
 model.add(LSTM(64, return_sequences=True, activation='relu', input_shape=(30,1662)))
@@ -30,4 +30,4 @@ model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categ
 model.fit(X_train, y_train, epochs=2000, callbacks=[tb_callback])
 model.summary()
 
-model.save('action.h5')
+model.save('action1.h5')
