@@ -17,7 +17,9 @@ from tensorflow.keras.models import Sequential
 import pyttsx3 
 
 def speak(inpText):
-    engine = pyttsx3.init()
+    engine = pyttsx3.init('sapi5')
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[1].id)
     engine.say(inpText)
     engine.runAndWait()
 
@@ -33,8 +35,8 @@ def mediapipe_detection(image, model):
     return image, results 
 
 def draw_landmarks(image, results):
-    mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACEMESH_TESSELATION) # Draw face connections
-    mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS) # Draw pose connections
+    # mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACEMESH_TESSELATION) # Draw face connections
+    # mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS) # Draw pose connections
     mp_drawing.draw_landmarks(image, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS) # Draw left hand connections
     mp_drawing.draw_landmarks(image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS) # Draw right hand connections
 
@@ -82,10 +84,11 @@ DATA_PATH = os.path.join("Data")
 
 # actions = np.array(['No Sign Detected'])
 actions = np.array(os.listdir("Data"))
+# print(actions)
 
 no_sequences = 30
 sequence_length = 30
 
 sequence = []
 sentence = []
-threshold = 0.9
+threshold = 0.4
